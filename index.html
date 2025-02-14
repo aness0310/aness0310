@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>موقع تجريبي</title>
+    <style>
+        /* تنسيق عام للصفحة */
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ebdada;
+            direction: rtl;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        /* شريط المهام */
+        
+        nav {
+            background-color: #0f0808;
+            overflow: hidden;
+        }
+        
+        nav a {
+            float: right;
+            display: block;
+            color: #a90c0c;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        
+        nav a:hover {
+            background-color: #ddd;
+            color: #000;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        /* تنسيق التبويبات */
+        
+        .tabs {
+            overflow: hidden;
+            background: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tabs button {
+            background: inherit;
+            float: right;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: background 0.3s;
+            font-size: 17px;
+        }
+        
+        .tabs button:hover {
+            background-color: #ccc;
+        }
+        
+        .tabs button.active {
+            background-color: #bbb;
+        }
+        
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+        }
+        /* تنسيق نموذج التسجيل */
+        
+        form {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        
+        form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+        }
+        
+        form input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        
+        form input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- رأس الصفحة -->
+    <header>
+        <h1>موقع ويب aness التجريبي</h1>
+    </header>
+
+    <!-- شريط التنقل -->
+    <nav>
+        <a href="#home">الرئيسية</a>
+        <a href="#about">عن الموقع</a>
+        <a href="#contact">اتصل بنا</a>
+    </nav>
+
+    <div class="container">
+        <!-- التبويبات -->
+        <div class="tabs">
+            <button class="tablinks active" onclick="openTab(event, 'tab1')">تبويب 1</button>
+            <button class="tablinks" onclick="openTab(event, 'tab2')">تبويب 2</button>
+            <button class="tablinks" onclick="openTab(event, 'tab3')">تبويب 3</button>
+        </div>
+
+        <!-- محتوى التبويبات -->
+        <div id="tab1" class="tabcontent" style="display:block;">
+            <h2>المحتوى الخاص بالتبويب 1</h2>
+            <p>هذا هو المحتوى الخاص بالتبويب الأول. يمكنك إضافة المزيد من المعلومات هنا.</p>
+        </div>
+        <div id="tab2" class="tabcontent">
+            <h2>المحتوى الخاص بالتبويب 2</h2>
+            <p>هذا هو المحتوى الخاص بالتبويب الثاني. يمكنك إضافة المزيد من المعلومات هنا.</p>
+        </div>
+        <div id="tab3" class="tabcontent">
+            <h2>المحتوى الخاص بالتبويب 3</h2>
+            <p>هذا هو المحتوى الخاص بالتبويب الثالث. يمكنك إضافة المزيد من المعلومات هنا.</p>
+        </div>
+
+        <!-- نموذج تسجيل البيانات -->
+        <form id="registrationForm">
+            <h2>تسجيل البيانات</h2>
+            <label for="firstName">الاسم:</label>
+            <input type="text" id="firstName" name="firstName" placeholder="أدخل اسمك">
+
+            <label for="lastName">اللقب:</label>
+            <input type="text" id="lastName" name="lastName" placeholder="أدخل لقبك">
+
+            <input type="submit" value="تسجيل">
+        </form>
+    </div>
+
+    <script>
+        // دالة جافاسكريبت للتعامل مع التبويبات
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            // إخفاء جميع محتويات التبويب
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            // إزالة التمييز من جميع أزرار التبويبات
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            // عرض المحتوى المطلوب وإضافة التمييز للزر
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // معالجة نموذج التسجيل
+        document.getElementById("registrationForm").addEventListener("submit", function(e) {
+            e.preventDefault(); // منع الإرسال الافتراضي للنموذج
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+
+            if (firstName === "" || lastName === "") {
+                alert("يرجى تعبئة جميع الحقول.");
+            } else {
+                alert("تم التسجيل بنجاح!\nالاسم: " + firstName + "\nاللقب: " + lastName);
+                // يمكنك هنا إرسال البيانات إلى الخادم أو معالجتها حسب الحاجة
+            }
+        });
+    </script>
+</body>
+
+</html>
